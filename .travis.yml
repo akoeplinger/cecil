@@ -1,8 +1,8 @@
 language: csharp
-sudo: false
 install:
+  - sudo apt-get install mono-utils
   - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
 script:
-  - xbuild Mono.Cecil.sln
+  - xbuild /p:Configuration=net_4_0_Debug Mono.Cecil.sln
   - sed -i 's/\\/\//g' Mono.Cecil.nunit
   - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe Mono.Cecil.nunit
